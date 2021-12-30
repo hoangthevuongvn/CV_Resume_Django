@@ -5,11 +5,11 @@ How to install:
 Install virtualenv If you haven't installed yet:
 python3 -m pip install --user virtualenv
 
-Create youre virtual environment
-
+Create youre virtual environment:
 python3 -m venv youre_env_name
 
 Activate virual environment:
+
 On Windows, run:
 youre_env_name\Scripts\activate.bat
 
