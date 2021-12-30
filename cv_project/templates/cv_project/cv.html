@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CV_TEST</title>  
+    <meta charset="utf-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="{%  static '/cvbuilder/default_green.css' %}">
+
+    <style>
+        @media print{
+            .print-invisible{
+                display: none;
+            }
+            a {
+                text-decoration: none !important;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+                color-adjust: exact !important;                 /*Firefox*/
+            }
+            @page :footer { 
+                display: none
+            } 
+            @page :header { 
+                display: none
+            } 
+        }
+    </style>
+</head>
+
+<body>
+    <article class="text-center position-relative bgwhite">
+           <!--STYLE DIV-->
+           <div class="mx-auto text-left bg-white" style="max-width: 1125px;" id="resume"> <!-- Removed: min-height: calc(100vh); -->
+             
+            <!--HEADER-->
+            <header class="resume-header pt-md-0">
+
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row" style="padding-left:15.2px;">
+
+                            <!--IMAGE-->
+                            <div style="height:220px;">
+                                {% if avartar %}
+                                    <img class="img-fluid" style="height: 220px; width:auto;" src="{{ avartar.url }}" alt="">
+                                {% endif %}
+                            </div>
+                            
+                            <!--PRIMARY INFO-->
+                            <div class="pl-5 mt-4">
+                                <h1 class="name mt-0 mb-1 text-white text-uppercase">{{ fullname }}</h1>
+                        
+                                    <div class="title mb-3">Lập trình viên</div>
+                              
+                                <ul class="list-unstyled">
+                                    {% if email %}
+                                        <li class="mb-2"><a href="mailto: {{ email }}"><i class="far fa-envelope fa-fw mr-2" data-fa-transform="grow-3"></i>{{ email }}</a></li>
+                                    {% endif %}
+                                    {% if mobile %}
+                                        <li><a href="tel: {{mobile}}"><i class="fas fa-mobile-alt fa-fw mr-2" data-fa-transform="grow-6"></i>{{ mobile }}</a></li>
+                                    {% endif %}
+                                    {% if address %}
+                                    <li><a href="addr: {{address}}"><i class="far fa-address-book fa-fw mr-2" data-fa-transform="grow-6"></i>{{ address }}</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--SECONDARY INFO-->
+                    <div class="col-3 mt-4">
+                        <ul class="resume-social list-unstyled">
+                            {% if website %}
+                                <li class="mb-3"><a href="https://{{website}}"><span class="fa-container text-center mr-2"><i class="fas fa-globe"></i></span>{{website}}</a></li>
+                            {% endif %}
+                            {% if facebook %}
+                                <li class="mb-3"><a href="https://{{facebook}}"><span class="fa-container text-center mr-2"><i class="fab fa-facebook"></i></span>{{facebook}}</a></li>
+                            {% endif %}
+                            {% if github %}
+                                <li class="mb-3"><a href="https://{{github}}"><span class="fa-container text-center mr-2"><i class="fab fa-github"></i></span>{{github}}</a></li>
+                            {% endif %}
+                            {% if twitter %}
+                                <li class="mb-3"><a href="https://{{twitter}}"><span class="fa-container text-center mr-2"><i class="fab fa-twitter-square"></i></span>{{twitter}}</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    
+                </div>
+            </header>
+
+            <!--BODY-->
+            <div class="resume-body pl-5 pr-5 pb-5 pt-4">
+
+                <div class="row">
+                     
+                    <div class="col-9">
+
+                           <!--CAREER SUMMARY-->
+                        {% if objective %}
+                        <section class="resume-section summary-section mb-4">
+                            <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Mục tiêu nghề nghiệp</h2>
+                            <div class="resume-section-content">
+                                <p class="mb-0">{{objective}}</p>
+                            </div>
+                        </section>
+                        {% endif %}
+
+                        <!--EXPERIENCES -->
+                        {% if experiencelist %}
+                        <section class="resume-section experience-section">
+                            <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3"><i class="fas fa-briefcase mr-1"></i> Kinh nghiệm</h2>
+                            <div class="resume-section-content">
+                                <div class="resume-timeline position-relative">
+
+                                    {% for experience in experiencelist %}
+                                    
+                                    <article class="resume-timeline-item position-relative pb-1">
+                                        <div class="resume-timeline-item-header mb-2">
+                                            <div class="row">
+                                                <h3 class="resume-position-title font-weight-bold mb-1 col-6">
+                                                    {{ experience.experience_position }}
+                                                </h3>
+                                                <div class="col-6 font-weight-bold" style="text-align: right;">
+                                                    {{ experience.company }}
+                                                </div>
+                                            </div>
+                                            <div class="resume-position-time">{{ experience.experience_start }} - {{ experience.experience_end }}</div>
+                                        </div>
+
+                                        <div class="resume-timeline-item-desc">
+                                            <p>{{experience.experience_details}}</p>
+                                            {% if experience.tech != "" %}
+                                                <h4 class="resume-timeline-item-desc-heading font-weight-bold mb-1">Skills For the Job:</h4>
+                                                <ul class="list-inline">
+                                                    {% for tech in experience.tech_as_list %}
+                                                        <li class="list-inline-item ml-0 mr-0"><span class="badge badge-primary" style="border:0px;">{{tech}}</span></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </div>
+
+                                    </article>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </section>
+                        {% endif %}
+                    </div>
+               
+                    <div class="col-3">
+                        <!--SKILLS-->
+                        {% if skilllist %}
+                            <section class="resume-section skills-section mb-4">
+                                <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-2"><i class="fas fa-cog mr-1"></i> Kỹ năng</h2>
+                                <div class="resume-section-content">
+                                    <ul class="list-inline">
+                                        {% for skill in skilllist %}
+                                            <li class="list-inline-item ml-0 mr-0" style="font-size:1.05em;">
+                                                <span class="badge badge-primary badge-pill" style="border:0px;">{{skill.skill_title}}</span>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </section>
+                        {% endif %}
+                        
+                        <!--EDUCATION-->
+                        {% if educationlist %}
+                            <section class="resume-section education-section mb-4">
+                                <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-2"><i class="fas fa-university mr-1"></i> HỌC TẬP</h2>
+                                <div class="resume-section-content">
+                                    <ul class="list-unstyled">
+                                        {% for education in educationlist %}
+                                            <li class="mb-2">
+                                                <div class="resume-degree font-weight-bold">{{education.school}}</div>
+                                                <div class="resume-degree-org">{{education.major}}</div>
+                                                <div class="resume-degree-time">{{education.education_start}}</div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </section>
+                        {% endif %}
+                        
+                        <!--ACHIEVEMENT-->
+                        {% if certificationlist %}
+                            <section class="resume-section reference-section mb-4">
+                                <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-2"><i class="fas fa-trophy mr-1"></i> GIẢI THƯỞNG</h2>
+                                <div class="resume-section-content">
+                                    <ul class="list-unstyled resume-awards-list">
+                                        {% for achievement in certificationlist %}
+                                        <li class="mb-2 position-relative">
+                                            <div class="resume-award-name">{{achievement.certification_title}}</div>
+                                            {% if achievement.certification_details != '' %}
+                                                <div class="resume-award-desc">{{achievement.certification_details}}</div>
+                                            {% endif %}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </section>
+                        {% endif %}
+
+                        <!--LANGUAGES-->
+                       {% if languagelist %}
+                            <section class="resume-section language-section">
+                                <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-2"><i class="fas fa-globe-europe mr-1"></i> NGOẠI NGỮ</h2>
+                                <div class="resume-section-content">
+                                    <ul class="list-unstyled resume-lang-list">
+                                        {% for language in languagelist %}
+                                            <li class="mb-2"><span class="resume-lang-name font-weight-bold">{{language.language_title}}</span> 
+                                            <small class="text-muted font-weight-normal">({{language.language_level}})</small></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </section>
+                        {% endif %}
+
+                         <!--PUBLICATIONS-->
+                        {% if activitylist %}
+                            <section class="resume-section reference-section mb-4">
+                                <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-2"><i class="fas fa-book-reader mr-1"></i> ĐỀ TÀI</h2>
+                                <div class="resume-section-content">
+                                    <ul class="list-unstyled resume-awards-list">
+                                        {% for publication in activitylist %}
+                                        <li class="mb-2 position-relative">
+                                            <div class="resume-award-name">{{publication.activity_title}}</div>
+                                            {% if publication.activity_details != '' %}
+                                                <div class="resume-award-desc">{{publication.activity_details}}</div>
+                                            {% endif %}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </section>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
