@@ -1,8 +1,6 @@
 from djongo import models
 import uuid
 
-# from django.db.models.fields import BinaryField, CharField
-# from django.db.models.fields.related import ForeignKey
 
 # Create your models here.
 
@@ -35,7 +33,7 @@ class Profile(models.Model):
     website = models.CharField(max_length=255, blank=True)
                     
     def __str__(self):
-        return str(f'Mục tiêu  nghề nghiệp {self.fullname}')
+        return str(self.fullname)
 
 
 class Objective(models.Model):
@@ -43,7 +41,7 @@ class Objective(models.Model):
     Objective_content = models.TextField()
 
     def __str__(self):
-        return str(self.Objective_cv)
+        return str(f'Mục tiêu  nghề nghiệp {self.Objective_cv}')
 
 
 class Education(models.Model):
@@ -113,7 +111,7 @@ class Skill(models.Model):
 class Language(models.Model):
     language_cv = models.ForeignKey(Cv_user, on_delete=models.CASCADE)
     language_title = models.CharField(max_length=10)
-    language_level = models.CharField(max_length=10)
+    language_level = models.CharField(max_length=15)
 
     def __str__(self):
         return str(self.language_title)
