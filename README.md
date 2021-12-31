@@ -1,6 +1,7 @@
 # CV_Resume_Django from Hoàng Thế Vượng
 
 How to install:
+------
 
 Install virtualenv If you haven't installed yet:
 
@@ -37,11 +38,7 @@ Install all the necessary packages:
 python -m pip install -r requirements.txt
 ```
 Complete all of the migrations:
-<<<<<<< HEAD
-
 ```
-=======
->>>>>>> 791941f68440a57ee03a1d8fb8990425ebe9294f
 python manage.py makemigrations
 python manage.py migrate
 ```
