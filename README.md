@@ -25,7 +25,6 @@ Install all the necessary packages:
 python -m pip install -r requirements.txt
 
 Complete all of the migrations:
-
 python manage.py makemigrations
 python manage.py migrate
 
