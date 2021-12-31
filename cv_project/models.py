@@ -60,7 +60,7 @@ class Education(models.Model):
 class Experience(models.Model):
     experience_cv = models.ForeignKey(Cv_user, on_delete=models.CASCADE)
     experience_company = models.CharField(max_length=50)
-    experience_position = models.CharField(max_length=20)
+    experience_position = models.CharField(max_length=40)
     experience_details = models.TextField()
     experience_start = models.DateField()
     experience_end = models.DateField()

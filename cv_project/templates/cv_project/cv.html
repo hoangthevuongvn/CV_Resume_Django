@@ -135,14 +135,6 @@
 
                                         <div class="resume-timeline-item-desc">
                                             <p>{{experience.experience_details}}</p>
-                                            {% if experience.tech != "" %}
-                                                <h4 class="resume-timeline-item-desc-heading font-weight-bold mb-1">Skills For the Job:</h4>
-                                                <ul class="list-inline">
-                                                    {% for tech in experience.tech_as_list %}
-                                                        <li class="list-inline-item ml-0 mr-0"><span class="badge badge-primary" style="border:0px;">{{tech}}</span></li>
-                                                    {% endfor %}
-                                                </ul>
-                                            {% endif %}
                                         </div>
 
                                     </article>
