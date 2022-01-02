@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'cv_project',
 ]
 
-INSTALLED_APPS += ['import_export']
+# INSTALLED_APPS += ['import_export']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
