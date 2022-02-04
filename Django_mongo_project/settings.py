@@ -77,24 +77,26 @@ WSGI_APPLICATION = 'Django_mongo_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
-#         'default': {
-#             'ENGINE': 'djongo',
-#             'NAME': 'djongo_test2',
-#             'ENFORCE_SCHEMA': False,
-#             'CLIENT': {
-#                 'host': 'mongodb://127.0.0.1',
-#                 'port' : 27017
-#             }  
-#         }
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+DATABASES = {
+        'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'djongo_test',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb+srv://hoangthevuongvn:<#MongoHtv2022>@resume0.dpewp.mongodb.net/djongo_test?retryWrites=true&w=majority',
+                'username': 'hoangthevuongvn',
+                'password': '#MongoHtv2022',
+                'authMechanism': 'SCRAM-SHA-1',
+            }  
+        }
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
