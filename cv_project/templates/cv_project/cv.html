@@ -102,7 +102,7 @@
                 <section class="resume-section summary-section mb-4">
                     <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Mục tiêu nghề nghiệp</h2>
                     <div class="resume-section-content">
-                        <p class="mb-0">{{objective}}</p>
+                        <p class="mb-0">{{objective|linebreaks}}</p>
                     </div>
                 </section>
                 {% endif %}
@@ -134,7 +134,7 @@
                                         </div>
 
                                         <div class="resume-timeline-item-desc">
-                                            <p>{{experience.experience_details|safe}}</p>
+                                            <p>{{experience.experience_details|linebreaks}}</p>
                                         </div>
 
                                     </article>
@@ -144,7 +144,7 @@
                         </section>
                         {% endif %}
                         <br>
-                         <!--PUBLICATIONS-->
+                         <!--ACTIVITY-->
                         {% if activitylist %}
                         <section class="resume-section reference-section mb-4">
                             <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-2"><i class="fas fa-book-reader mr-1"></i> ĐỀ TÀI</h2>
@@ -154,8 +154,13 @@
                                     <li class="mb-2 position-relative">
                                         <div class="resume-award-name">{{publication.activity_title}}</div>
                                         {% if publication.activity_details %}
-                                            <div class="resume-award-desc">{{publication.activity_details|safe}}</div>
+                                            <div class="resume-award-desc">{{publication.activity_details|linebreaks}}</div>
+                                            {% if publication.activity_source %}
+                                            <li class="mb-3"><a href="https://{{publication.activity_source}}"><span class="fa-container text-center mr-2"><i class="fab fa-github"></i></span>Source: https://{{publication.activity_source}}</a></li>
+                                            
+                                            {% endif %}
                                         {% endif %}
+                                       
                                     </li>
                                     {% endfor %}
                                  </ul>
@@ -192,7 +197,7 @@
                                             <li class="mb-2">
                                                 <div class="resume-degree font-weight-bold">{{education.school}}</div>
                                                 <div class="resume-degree-org">{{education.major}}</div>
-                                                <div class="resume-degree-time">{{education.education_start}}</div>
+                                                <div class="resume-degree-time">{{education.education_end}}</div>
                                             </li>
                                         {% endfor %}
                                     </ul>
@@ -210,7 +215,7 @@
                                         <li class="mb-2 position-relative">
                                             <div class="resume-award-name">{{achievement.certification_title}}</div>
                                             {% if achievement.certification_details != '' %}
-                                                <div class="resume-award-desc">{{achievement.certification_details}}</div>
+                                                <div class="resume-award-desc">{{achievement.certification_details|linebreaks}}</div>
                                             {% endif %}
                                         </li>
                                         {% endfor %}

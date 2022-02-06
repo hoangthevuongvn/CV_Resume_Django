@@ -16,7 +16,7 @@ def cv(request):
     full_list['activitylist'] = activity_list()
     full_list['skilllist'] = skill_list()
     full_list['languagelist'] = language_list()
-    print(full_list)
+    print(full_list['activitylist'])
     return render(request, 'cv_project/cv.html', full_list)
 # Create your views here.
 

@@ -52,7 +52,7 @@ def activity_list():
     activitylist = []
 
     for i in activity_query:
-        activitylist.append({'activity_title': i.activity_title, 'activity_start': i.activity_start, 'activity_end': i.activity_end, 'activity_position': i.activity_position, 'activity_details': i.activity_details, 'source': i.source})
+        activitylist.append({'activity_title': i.activity_title, 'activity_start': i.activity_start, 'activity_end': i.activity_end, 'activity_position': i.activity_position, 'activity_details': i.activity_details, 'activity_source': i.source})
     return activitylist
 
 def skill_list():
